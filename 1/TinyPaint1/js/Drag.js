@@ -10,9 +10,8 @@ class Drag {
   }
   #onMousedown(x, y) {
     const start = new Point(x, y)
-    const shape = selectShape.shape
-    shape.initialize(start)
-    this.#current = shape
+    this.#current = selectShape.shape
+    this.#current.initialize(start)
   }
   #onMousemove(x, y) {
     if(!this.#current) return
