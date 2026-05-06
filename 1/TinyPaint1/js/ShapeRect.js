@@ -9,9 +9,9 @@ export class ShapeRect {
     this.#width = 0
     this.#height = 0
   }
-  onMousemove(x, y) {
-    this.#width = this.#start.x - x
-    this.#height = this.#start.y - y
+  onMousemove(point) {
+    this.#width = this.#start.x - point.x
+    this.#height = this.#start.y - point.y
   }
   draw() {
     context.fillStyle = 'red'

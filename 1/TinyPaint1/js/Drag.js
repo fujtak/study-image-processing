@@ -1,18 +1,35 @@
-import { canvas } from "./CANVAS.js";
+import { canvas } from "./CANVAS.js"
+import { Point } from "./Point.js"
+import { ShapeRect } from "./ShapeRect.js"
+import { shapes } from "./Shapes.js"
 
 class Drag {
-  #isActive
+  #current
   constructor() {
-    this.#isActive = false
+    this.#current = undefined
   }
-  #onMousedown() {
-    this.#isActive = true
+  #onMousedown(x, y) {
+    const point = new Point(x, y)
+    const rect = new ShapeRect(point)
+    this.#current = rect
+  }
+  #onMousemove(x, y) {
+    if(!this.#current) return
+    const point = new Point(x, y)
+    this.#current.onMousemove(point)
   }
   #onMouseup() {
-    this.#isActive = false
+    if(!this.#current) return
+    shapes.push(this.#current)
+    this.#current = undefined
+  }
+  draw() {
+    if(!this.#current) return
+    this.#current.draw()
   }
   addEventListener() {
-    canvas.addEventListener('mousedown', () => this.#onMousedown())
+    canvas.addEventListener('mousedown', e => this.#onMousedown(e.clientX, e.clientY))
+    canvas.addEventListener('mousemove', e => this.#onMousemove(e.clientX, e.clientY))
     canvas.addEventListener('mouseup', () => this.#onMouseup())
   }
 }
