@@ -3,9 +3,12 @@ import { context } from "./CANVAS.js"
 export class ShapeLine {
   #start
   #end
-  constructor(start) {
-    this.#start = start
+  constructor() {
+    this.#start = undefined
     this.#end = undefined
+  }
+  initialize(start) {
+    this.#start = start
   }
   onMousemove(point) {
     this.#end = point

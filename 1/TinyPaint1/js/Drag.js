@@ -1,8 +1,7 @@
 import { canvas, context } from "./CANVAS.js"
 import { Point } from "./Point.js"
-import { ShapeRect } from "./ShapeRect.js"
-import { ShapeLine } from "./ShapeLine.js"
 import { shapes } from "./Shapes.js"
+import { selectShape } from "./SelectShape.js"
 
 class Drag {
   #current
@@ -10,9 +9,10 @@ class Drag {
     this.#current = undefined
   }
   #onMousedown(x, y) {
-    const point = new Point(x, y)
-    const rect = new ShapeLine(point)
-    this.#current = rect
+    const start = new Point(x, y)
+    const shape = selectShape.shape
+    shape.initialize(start)
+    this.#current = shape
   }
   #onMousemove(x, y) {
     if(!this.#current) return

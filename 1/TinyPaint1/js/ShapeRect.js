@@ -4,10 +4,13 @@ export class ShapeRect {
   #start
   #width
   #height
-  constructor(start) {
-    this.#start = start
+  constructor() {
+    this.#start = undefined
     this.#width = 0
     this.#height = 0
+  }
+  initialize(start) {
+    this.#start = start
   }
   onMousemove(point) {
     this.#width = point.x - this.#start.x
