@@ -32,8 +32,8 @@ class Drag {
     this.#current.draw()
   }
   addEventListener() {
-    canvas.addEventListener('mousedown', e => this.#onMousedown(e.clientX, e.clientY))
-    canvas.addEventListener('mousemove', e => this.#onMousemove(e.clientX, e.clientY))
+    canvas.addEventListener('mousedown', e => this.#onMousedown(e.offsetX, e.offsetY))
+    canvas.addEventListener('mousemove', e => this.#onMousemove(e.offsetX, e.offsetY))
     canvas.addEventListener('mouseup', () => this.#onMouseup())
   }
 }
