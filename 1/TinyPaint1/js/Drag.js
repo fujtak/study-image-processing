@@ -1,6 +1,7 @@
-import { canvas } from "./CANVAS.js"
+import { canvas, context } from "./CANVAS.js"
 import { Point } from "./Point.js"
 import { ShapeRect } from "./ShapeRect.js"
+import { ShapeLine } from "./ShapeLine.js"
 import { shapes } from "./Shapes.js"
 
 class Drag {
@@ -10,7 +11,7 @@ class Drag {
   }
   #onMousedown(x, y) {
     const point = new Point(x, y)
-    const rect = new ShapeRect(point)
+    const rect = new ShapeLine(point)
     this.#current = rect
   }
   #onMousemove(x, y) {
@@ -25,6 +26,10 @@ class Drag {
   }
   draw() {
     if(!this.#current) return
+    context.fillStyle = 'red'
+    context.strokeStyle = 'red'
+    context.lineCap = 'round'
+    context.lineWidth = 5
     this.#current.draw()
   }
   addEventListener() {

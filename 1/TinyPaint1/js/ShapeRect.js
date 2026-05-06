@@ -14,7 +14,6 @@ export class ShapeRect {
     this.#height = point.y - this.#start.y
   }
   draw() {
-    context.fillStyle = 'red'
     context.beginPath()
     context.rect(this.#start.x, this.#start.y, this.#width, this.#height)
     context.closePath()
